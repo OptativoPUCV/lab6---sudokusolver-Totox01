@@ -139,6 +139,13 @@ Node* DFS(Node* initial, int* cont){
     if(is_final(current) == 1){
       return current;
     }
+    List* adj = get_adj_nodes(current);
+    Node* aux = first(adj);
+    while (aux != NULL){
+      push(pila, aux);
+      aux = next(adj);
+    } 
+    free(current);
   }
   return NULL;
 }
