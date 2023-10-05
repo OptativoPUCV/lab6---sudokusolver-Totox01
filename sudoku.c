@@ -50,9 +50,29 @@ int is_valid(Node* n){
 
 
 List* get_adj_nodes(Node* n){
-    List* list=createList();
-    return list;
+   List* list=createList();
+   int row = -1;
+   int col = -1;
+   for(int i = 0; i < 9; i++){
+      for(int j = 0; j < 9; j++){
+         if(n->sudo[i][j] == 0){
+            row = i;
+            col = j;
+            break;
+         }
+      }
+      if(row != -1) break;
+   }
+   if(row == -1) return list;
+
+   for(int k = 1; k <= 9; k++){
+      Node* adj = copy(n);
+      adj->sudo[row][col] = k;
+      pushBack(list, adj);
+   }
+   return list;
 }
+
 
 
 int is_final(Node* n){
