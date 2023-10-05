@@ -83,8 +83,6 @@ int is_valid(Node* n){
       }
     }
   }
-  
-
     return 1;
 }
 
@@ -108,7 +106,11 @@ List* get_adj_nodes(Node* n){
    for(int k = 1; k <= 9; k++){
       Node* adj = copy(n);
       adj->sudo[row][col] = k;
-      pushBack(list, adj);
+      if (is_valid(adj) == 1){
+        pushBack(list, adj);
+      } else {
+        free(adj);
+      }
    }
    return list;
 }
